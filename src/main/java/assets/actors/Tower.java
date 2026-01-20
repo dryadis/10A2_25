@@ -1,11 +1,16 @@
 package assets.actors;
 
 import assets.GameAsset;
+import static java.lang.Math.abs;
 import javax.swing.ImageIcon;
 
 public class Tower extends GameAsset {
-    
-    int upgradeCost, upgradeCostFlowers, damage, fireRate, range;
+    Enemy[] e = [Enemy];
+    int[][] u = [[500,3,20,2,3],[600,3,30,4,4],[1000,4,40,5,7]];
+    int upgradeCost, upgradeCostFlowers, damage, fireRate, range, level;
+    int money = 5000;
+    int flowers = 20;
+    int[][] weg = [[1,1],[1,2],[1,3],[1,4],[1,5],];
     
     public Tower(int x, int y, ImageIcon img, String name) {
         super(x, y, img, name);
@@ -14,26 +19,89 @@ public class Tower extends GameAsset {
         this.damage = 20;
         this.fireRate = 2;
         this.range = 3;
+        this.level = 0;
         
     }
 
-    public Tower(int upgradeCost, int upgradeCostFlowers, int damage, int fireRate, int range, int x, int y, ImageIcon img, String name) {
+    public Tower(int upgradeCost, int upgradeCostFlowers, int damage, int fireRate, int range, int level, int x, int y, ImageIcon img, String name) {
         super(x, y, img, name);
         this.upgradeCost = upgradeCost;
         this.upgradeCostFlowers = upgradeCostFlowers;
         this.damage = damage;
         this.fireRate = fireRate;
         this.range = range;
+        this.level = level;
     }
 
-    
-    
-    public void shoot () {
-
+    public boolean Enemyinrange(Tower tower){
+        boolean g = false;
+        for (int i = 0; i < tower.range; i++) {
+            if (e[i].getX() <= tower.getX()+range || e[i].getX() >= tower.getX()-range) {
+                g = true;
+                break;
+            }
+        }
+        return g ;
     }
     
-    public void upgrade () {
-
+    public boolean Enemyinrange2(Tower tower){
+        boolean g = false;
+        for (int i = 1; i < weg.length+1; i++) {
+            if(abs(weg[weg.length-i][0])<= abs(tower.getX()+range) & abs(weg[weg.length-i][1])<= abs(tower.getY())){
+                g = true;
+                break;
+            }
+        }
+        return g ;
+    }
+    
+    public Enemy farestEnemy(Tower tower){
+        Enemy en = e[0];
+        for (int i = 1; i < weg.length+1; i++) {
+            if(abs(weg[weg.length-i][0])<= abs(tower.getX()+range) & abs(weg[weg.length-i][1])<= abs(tower.getY())){
+                for (int j = 0; j < e.length; j++) {
+                    if (e[j].getX() == weg[weg.length-i][0] & e[j].getY() == weg[weg.length-i][1]) {
+                        en = e[j];
+                        break;
+                    }
+                }
+            }
+        }
+        return en;
+    }
+    
+    public Enemy nearestEnemy(Tower tower){
+        Enemy en = e[0];
+        for (int i = 0; i < tower.range; i++) {
+            for (int j = 0; j < e.length; j++) {
+                if (e[j].getX() == tower.getX()+i || e[j].getX() == tower.getX()-i) {
+                    en = e[j];
+                    break;
+                }
+            }
+        }
+        return en;
+    }
+    
+    public void shoot (Tower tower) {
+        if (Enemyinrange2(tower)) {
+            Enemy enemy = farestEnemy(tower);
+            enemy.healthpoints = enemy.healthpoints-tower.damage;
+        }
+    }
+    
+    public void upgrade (Tower tower) {
+        if (tower.level<=3 & money>tower.upgradeCost & flowers>tower.upgradeCostFlowers) {
+            int x = tower.level-1;
+            money = money-tower.upgradeCost;
+            flowers = flowers-tower.upgradeCostFlowers;
+            tower.upgradeCost = u[x][0];
+            tower.upgradeCostFlowers = u[x][1];
+            tower.damage = u[x][2];
+            tower.fireRate = u[x][3];
+            tower.range = u[x][4];
+            tower.level = tower.level+1;
+        }
     }
 
     public int getUpgradeCost() {
@@ -56,6 +124,5 @@ public class Tower extends GameAsset {
         return range;
     }
     
-    
-    
 }
+
