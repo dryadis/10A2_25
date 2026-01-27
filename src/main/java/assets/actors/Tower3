@@ -1,10 +1,11 @@
-
 package assets.actors;
-
 import assets.GameAsset;
 import static java.lang.Math.abs;
 import javax.swing.ImageIcon;
-
+/**
+ *
+ * @author guest-wz4fze
+ */
 public class Tower3 extends GameAsset{
     Enemy enemy = Enemy.Enemy;
     Enemy[] e = {enemy};
@@ -106,6 +107,5 @@ public class Tower3 extends GameAsset{
     public int getRange() {
         return range;
     }
-    
+   
 }
-
