@@ -1,0 +1,70 @@
+package gamelogic;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import gamelogic.Shop;
+
+/**
+ *
+ * @author guest-dlpdb8
+ */
+public abstract class Mouse extends Map implements MouseListener {
+    Mouse()
+    {
+    }
+    boolean placingopen = false;
+    boolean shopopen = false;
+    boolean upgradeopen = false;
+    // this function is invoked when the mouse is pressed or released
+    @Override
+    public void mouseClicked(MouseEvent e){
+        int x = e.getX();
+        int y = e.getY();
+        if(placingopen){
+            if(x>=400 & x<=500 & y>=100 & y<=200){
+                //placing page schließen
+                placingopen = false;
+            }
+            else{
+                //tower placen
+            }
+        }
+        if(shopopen){
+            if(x>=400 & x<=500 & y>=100 & y<=200){
+                //shop schließen
+                shopopen = false;
+            }
+            else{
+                // shopping implementieren
+            }
+        }
+        if(upgradeopen){
+            if(x>=400 & x<=500 & y>=100 & y<=200){
+                //shop schließen
+                shopopen = false;
+            }
+            else{
+                //upgrade implementieren
+            }
+        }
+        else{
+            if(x>=400 & x<=500 & y>=100 & y<=200){
+                //shop öffnen
+                shopopen = true;
+            }
+            if(x>=400 & x<=500 & y>=100 & y<=200){
+                //upgrade menü offnen
+                upgradeopen = true;
+            }
+            if(x>=400 & x<=500 & y>=100 & y<=200){
+                //placing möglichkeit öffnen
+                placingopen = true;
+            }
+        }
+        
+    }
+}
