@@ -1,16 +1,21 @@
 package assets.actors;
 import assets.GameAsset;
 import static java.lang.Math.abs;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import gamelogic.Shop;
+import assets.actors.Enemy;
 
 public class Tower extends GameAsset {
     Enemy enemy = Enemy.Enemy;
     Enemy[] e = {enemy};
-    int[][] u = {{500,3,20,2,3},{600,3,30,4,4},{1000,4,40,5,7}};
+    static int[][] u = {{500,3,20,2,3},{600,3,30,4,4},{1000,4,40,5,7}};
     int upgradeCost, upgradeCostFlowers, damage, fireRate, range, level;
-    int money = 5000;
-    int flowers = 20;
+    static int money = 5000;
+    static int flowers = 20;
     int[][] weg = {{1,1},{1,2},{1,3},{1,4},{1,5}};
+    static int i = 0;
+    public static ArrayList<Tower> Towers = new ArrayList<Tower>();
     
     public Tower(int x, int y, ImageIcon img, String name) {
         super(x, y, img, name);
@@ -65,6 +70,14 @@ public class Tower extends GameAsset {
             Enemy enemy = farestEnemy(tower);
             enemy.healthpoints = enemy.healthpoints-tower.damage;
         }
+    }
+    
+    static public void place(int x, int y){
+        Tower k = new Tower(x, y, null, "T"+i+"");
+        i = i+1;
+        Towers.add(k);
+        money = money-u[0][0];
+        flowers = flowers-u[0][1];
     }
     
     public void upgrade (Tower tower) {
