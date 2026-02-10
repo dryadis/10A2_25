@@ -1,3 +1,4 @@
+
 package assets.actors;
 import assets.GameAsset;
 import static java.lang.Math.abs;

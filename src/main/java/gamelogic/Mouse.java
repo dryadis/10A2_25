@@ -1,24 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package gamelogic;
-import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*;
-import gamelogic.Shop;
 import assets.actors.Tower;
 import assets.actors.Tower2;
 import assets.actors.Tower3;
 import static java.lang.Math.abs;
-/**
- *
- * @author guest-qlc3jq
- */
+
 public class Mouse {
-    Mouse()
-    {
-    }
     boolean placingopen1 = false;
     boolean placingopen2 = false;
     boolean placingopen3 = false;
@@ -26,7 +14,6 @@ public class Mouse {
     public void mouseClicked(MouseEvent e){
         int x = e.getX();
         int y = e.getY();
-        int r = 5;
         if(x>=400 & x<=500 & y>=100 & y<=200){
             upgradeopen = true;
             // überliegende grafik
