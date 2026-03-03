@@ -13,7 +13,7 @@ public class Tiles {
     private int y;
     private int ID;
     private boolean isPlaceble;
-
+    public int id;
     public Tiles(int x, int y, int ID, boolean isPlaceble) {
         this.x = x;
         this.y = y;
