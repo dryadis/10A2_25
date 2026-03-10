@@ -114,8 +114,16 @@ public class Tower extends GameAsset {
         }
         return en;
     }
-    
-    
+    public double[] shootfunction (Tower tower){
+        double[] f = {0,0};
+        int x1 = tower.getX();
+        int y1 = tower.getY();
+        int x2 = farestEnemy(tower).getX();
+        int y2 = farestEnemy(tower).getY();
+        f[0] = (y1-y2)/(x1-x2);
+        f[1] = (y1-y2-x2)/(x1-x2)+y2;
+        return f;
+    }
     public void shoot (Tower tower) {
         if (Enemyinrange(tower)) {
             Enemy en = farestEnemy(tower);

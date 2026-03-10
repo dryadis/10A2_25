@@ -54,6 +54,17 @@ public class Tower2 extends GameAsset{
         return g ;
     }
     
+    public double[] shootfunction (Tower tower, Enemy en){
+        double[] f = {0,0};
+        int x1 = tower.getX();
+        int y1 = tower.getY();
+        int x2 = en.getX();
+        int y2 = en.getY();
+        f[0] = (y1-y2)/(x1-x2);
+        f[1] = (y1-y2-x2)/(x1-x2)+y2;
+        return f;
+    }
+    
     public void shoot (Tower2 tower) {
         for (Enemy e : Enemy.Standard) {
                 if(abs(e.getX()) <= abs(tower.getX()+tower.range) & abs(e.getY()) <= abs(tower.getY()+tower.range)){
