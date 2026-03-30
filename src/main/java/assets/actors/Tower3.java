@@ -7,7 +7,6 @@ import javax.swing.ImageIcon;
 import main.Tiles;
 
 public class Tower3 extends GameAsset{
-    Enemy enemy = Enemy.Enemy;
     static int[][] u = {{500,3,20,2,3,0},{600,3,30,4,4,0},{1000,4,40,5,7,0}};
     int upgradeCost, upgradeCostFlowers, damage, fireRate, range, level, modef;
     static int money = 5000;
