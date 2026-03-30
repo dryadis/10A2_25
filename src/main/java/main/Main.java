@@ -19,6 +19,7 @@ public class Main {
     static int Tickcount = 0;
     static int Tickloop = 1;
     static int wave = 1; 
+    public static Tiles[][] lilM;
     public static void main(String[] args) {
         System.out.println("Hello Remote World!");
 
